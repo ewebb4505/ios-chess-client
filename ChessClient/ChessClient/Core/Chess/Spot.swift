@@ -24,11 +24,11 @@ extension Spot {
     }
     
     var row: Int {
-        Int(self.rawValue[self.rawValue.endIndex].description)!
+        Int(self.rawValue.last!.description)!
     }
     
     var file: String {
-        self.rawValue[self.rawValue.startIndex].lowercased()
+        self.rawValue.first!.lowercased()
     }
     
     var files: [String] {
@@ -71,6 +71,16 @@ extension Spot {
         set.insertIfNotNull(self.move(down: 1, right: 1))
         set.insertIfNotNull(self.move(down: 1, left: 1))
         return set
+    }
+    
+    func isWhiteSqaure() -> Bool {
+        let row = self.row
+        let file = self.file
+        if (row == 1 || row == 3 || row == 5 || row == 7) {
+             return (file == "b" || file == "d" || file == "f" || file == "h")
+        } else {
+            return (file == "a" || file == "c" || file == "e" || file == "g")
+        }
     }
 }
 
