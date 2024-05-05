@@ -9,14 +9,21 @@
 /* Begin PBXBuildFile section */
 		01649A0F2BE69A560013B568 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A0E2BE69A560013B568 /* AppDelegate.swift */; };
 		01649A112BE69A560013B568 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A102BE69A560013B568 /* SceneDelegate.swift */; };
-		01649A132BE69A560013B568 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A122BE69A560013B568 /* ViewController.swift */; };
-		01649A162BE69A560013B568 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01649A142BE69A560013B568 /* Main.storyboard */; };
 		01649A192BE69A560013B568 /* ChessClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01649A172BE69A560013B568 /* ChessClient.xcdatamodeld */; };
 		01649A1B2BE69A570013B568 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01649A1A2BE69A570013B568 /* Assets.xcassets */; };
 		01649A1E2BE69A570013B568 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01649A1C2BE69A570013B568 /* LaunchScreen.storyboard */; };
 		01649A292BE69A570013B568 /* ChessClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A282BE69A570013B568 /* ChessClientTests.swift */; };
 		01649A332BE69A570013B568 /* ChessClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A322BE69A570013B568 /* ChessClientUITests.swift */; };
 		01649A352BE69A570013B568 /* ChessClientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A342BE69A570013B568 /* ChessClientUITestsLaunchTests.swift */; };
+		01649A492BE69D520013B568 /* PlayerPoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A482BE69D520013B568 /* PlayerPoolViewController.swift */; };
+		01649A4C2BE6A3C70013B568 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A4B2BE6A3C70013B568 /* ViewController.swift */; };
+		01649A4F2BE6A95C0013B568 /* PlayerWaitingToPlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A4E2BE6A95C0013B568 /* PlayerWaitingToPlayModel.swift */; };
+		01649A522BE6AA170013B568 /* PlayerPoolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A512BE6AA170013B568 /* PlayerPoolManager.swift */; };
+		01649A542BE701540013B568 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A532BE701540013B568 /* InitialViewController.swift */; };
+		01649A582BE7020B0013B568 /* InitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A572BE7020B0013B568 /* InitialViewModel.swift */; };
+		01649A5A2BE702240013B568 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A592BE702240013B568 /* Player.swift */; };
+		01649A5C2BE708BA0013B568 /* PlayerPoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A5B2BE708BA0013B568 /* PlayerPoolViewModel.swift */; };
+		01649A5E2BE7212A0013B568 /* ChessGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A5D2BE7212A0013B568 /* ChessGameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +47,6 @@
 		01649A0B2BE69A560013B568 /* ChessClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChessClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01649A0E2BE69A560013B568 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01649A102BE69A560013B568 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		01649A122BE69A560013B568 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		01649A152BE69A560013B568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		01649A182BE69A560013B568 /* ChessClient.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChessClient.xcdatamodel; sourceTree = "<group>"; };
 		01649A1A2BE69A570013B568 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01649A1D2BE69A570013B568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +56,15 @@
 		01649A2E2BE69A570013B568 /* ChessClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChessClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01649A322BE69A570013B568 /* ChessClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessClientUITests.swift; sourceTree = "<group>"; };
 		01649A342BE69A570013B568 /* ChessClientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessClientUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		01649A482BE69D520013B568 /* PlayerPoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPoolViewController.swift; sourceTree = "<group>"; };
+		01649A4B2BE6A3C70013B568 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		01649A4E2BE6A95C0013B568 /* PlayerWaitingToPlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerWaitingToPlayModel.swift; sourceTree = "<group>"; };
+		01649A512BE6AA170013B568 /* PlayerPoolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPoolManager.swift; sourceTree = "<group>"; };
+		01649A532BE701540013B568 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		01649A572BE7020B0013B568 /* InitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewModel.swift; sourceTree = "<group>"; };
+		01649A592BE702240013B568 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		01649A5B2BE708BA0013B568 /* PlayerPoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPoolViewModel.swift; sourceTree = "<group>"; };
+		01649A5D2BE7212A0013B568 /* ChessGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +115,18 @@
 		01649A0D2BE69A560013B568 /* ChessClient */ = {
 			isa = PBXGroup;
 			children = (
+				01649A4A2BE69E4B0013B568 /* ViewModels */,
+				01649A472BE69D360013B568 /* Models */,
+				01649A462BE69D2F0013B568 /* Views */,
+				01649A452BE69D200013B568 /* ViewControllers */,
+				01649A432BE69CD40013B568 /* Core */,
 				01649A0E2BE69A560013B568 /* AppDelegate.swift */,
 				01649A102BE69A560013B568 /* SceneDelegate.swift */,
-				01649A122BE69A560013B568 /* ViewController.swift */,
-				01649A142BE69A560013B568 /* Main.storyboard */,
 				01649A1A2BE69A570013B568 /* Assets.xcassets */,
 				01649A1C2BE69A570013B568 /* LaunchScreen.storyboard */,
 				01649A1F2BE69A570013B568 /* Info.plist */,
 				01649A172BE69A560013B568 /* ChessClient.xcdatamodeld */,
+				01649A4B2BE6A3C70013B568 /* ViewController.swift */,
 			);
 			path = ChessClient;
 			sourceTree = "<group>";
@@ -128,6 +146,65 @@
 				01649A342BE69A570013B568 /* ChessClientUITestsLaunchTests.swift */,
 			);
 			path = ChessClientUITests;
+			sourceTree = "<group>";
+		};
+		01649A432BE69CD40013B568 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				01649A502BE6AA060013B568 /* Managers */,
+				01649A4D2BE6A8CE0013B568 /* Network */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		01649A452BE69D200013B568 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				01649A482BE69D520013B568 /* PlayerPoolViewController.swift */,
+				01649A532BE701540013B568 /* InitialViewController.swift */,
+				01649A5D2BE7212A0013B568 /* ChessGameViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		01649A462BE69D2F0013B568 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		01649A472BE69D360013B568 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				01649A4E2BE6A95C0013B568 /* PlayerWaitingToPlayModel.swift */,
+				01649A592BE702240013B568 /* Player.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		01649A4A2BE69E4B0013B568 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				01649A572BE7020B0013B568 /* InitialViewModel.swift */,
+				01649A5B2BE708BA0013B568 /* PlayerPoolViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		01649A4D2BE6A8CE0013B568 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		01649A502BE6AA060013B568 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				01649A512BE6AA170013B568 /* PlayerPoolManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +313,6 @@
 			files = (
 				01649A1E2BE69A570013B568 /* LaunchScreen.storyboard in Resources */,
 				01649A1B2BE69A570013B568 /* Assets.xcassets in Resources */,
-				01649A162BE69A560013B568 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +337,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01649A132BE69A560013B568 /* ViewController.swift in Sources */,
+				01649A4C2BE6A3C70013B568 /* ViewController.swift in Sources */,
+				01649A5C2BE708BA0013B568 /* PlayerPoolViewModel.swift in Sources */,
 				01649A192BE69A560013B568 /* ChessClient.xcdatamodeld in Sources */,
 				01649A0F2BE69A560013B568 /* AppDelegate.swift in Sources */,
+				01649A522BE6AA170013B568 /* PlayerPoolManager.swift in Sources */,
+				01649A492BE69D520013B568 /* PlayerPoolViewController.swift in Sources */,
+				01649A582BE7020B0013B568 /* InitialViewModel.swift in Sources */,
 				01649A112BE69A560013B568 /* SceneDelegate.swift in Sources */,
+				01649A4F2BE6A95C0013B568 /* PlayerWaitingToPlayModel.swift in Sources */,
+				01649A5A2BE702240013B568 /* Player.swift in Sources */,
+				01649A542BE701540013B568 /* InitialViewController.swift in Sources */,
+				01649A5E2BE7212A0013B568 /* ChessGameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,14 +385,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		01649A142BE69A560013B568 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01649A152BE69A560013B568 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		01649A1C2BE69A570013B568 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -451,7 +527,7 @@
 				INFOPLIST_FILE = ChessClient/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -461,6 +537,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Evan.ChessClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -479,7 +558,7 @@
 				INFOPLIST_FILE = ChessClient/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -489,6 +568,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Evan.ChessClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
