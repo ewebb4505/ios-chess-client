@@ -27,6 +27,8 @@
 		01649A622BE730F50013B568 /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A612BE730F50013B568 /* Spot.swift */; };
 		01649A642BE7319E0013B568 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A632BE7319E0013B568 /* Piece.swift */; };
 		01649A662BE732870013B568 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A652BE732870013B568 /* Board.swift */; };
+		01649A682BE807170013B568 /* ChessGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A672BE807170013B568 /* ChessGameViewModel.swift */; };
+		01649A6A2BE807410013B568 /* ChessBoardSpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A692BE807410013B568 /* ChessBoardSpotCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		01649A612BE730F50013B568 /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		01649A632BE7319E0013B568 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		01649A652BE732870013B568 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		01649A672BE807170013B568 /* ChessGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessGameViewModel.swift; sourceTree = "<group>"; };
+		01649A692BE807410013B568 /* ChessBoardSpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessBoardSpotCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,7 @@
 		01649A462BE69D2F0013B568 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				01649A692BE807410013B568 /* ChessBoardSpotCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 			children = (
 				01649A572BE7020B0013B568 /* InitialViewModel.swift */,
 				01649A5B2BE708BA0013B568 /* PlayerPoolViewModel.swift */,
+				01649A672BE807170013B568 /* ChessGameViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -358,6 +364,7 @@
 				01649A5C2BE708BA0013B568 /* PlayerPoolViewModel.swift in Sources */,
 				01649A662BE732870013B568 /* Board.swift in Sources */,
 				01649A192BE69A560013B568 /* ChessClient.xcdatamodeld in Sources */,
+				01649A6A2BE807410013B568 /* ChessBoardSpotCollectionViewCell.swift in Sources */,
 				01649A0F2BE69A560013B568 /* AppDelegate.swift in Sources */,
 				01649A522BE6AA170013B568 /* PlayerPoolManager.swift in Sources */,
 				01649A492BE69D520013B568 /* PlayerPoolViewController.swift in Sources */,
@@ -369,6 +376,7 @@
 				01649A622BE730F50013B568 /* Spot.swift in Sources */,
 				01649A542BE701540013B568 /* InitialViewController.swift in Sources */,
 				01649A5E2BE7212A0013B568 /* ChessGameViewController.swift in Sources */,
+				01649A682BE807170013B568 /* ChessGameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
