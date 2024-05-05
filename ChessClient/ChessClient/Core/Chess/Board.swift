@@ -35,6 +35,19 @@ extension Board {
          [.a1,.b1,.c1,.d1,.e1,.f1,.g1,.h1]]
             .reversed()
     }
+    
+    func pieceAt(row: Int, fileIndex: Int) -> Piece? {
+        let file = Spot.files[fileIndex]
+        let spot = Spot.construct(row: row+1, file: file)!
+        let piece = self[spot] ?? nil
+        return piece
+    }
+    
+    func spotAt(row: Int, fileIndex: Int) -> Spot {
+        let file = Spot.files[fileIndex]
+        let spot = Spot.construct(row: row+1, file: file)!
+        return spot
+    }
 }
 
 extension Pieces {

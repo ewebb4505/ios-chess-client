@@ -14,6 +14,10 @@ class ChessGameViewController: UIViewController, UICollectionViewDelegate, UICol
     // UI elements
     var board: UICollectionView!
     var boardLayout: UICollectionViewFlowLayout!
+    static let squareSize: CGFloat = 44
+    var boardSize: CGFloat {
+        Self.squareSize * 8
+    }
     
     init(whitePlayer: Player = Player(id: UUID()), blackPlayer: Player = Player(id: UUID())) {
         viewModel = ChessGameViewModel(whitePlayer: whitePlayer, blackPlayer: blackPlayer)
@@ -29,7 +33,10 @@ class ChessGameViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         
         boardLayout = UICollectionViewFlowLayout()
-        boardLayout.itemSize = CGSize(width: 40, height: 40)
+        boardLayout.itemSize = CGSize(width: Self.squareSize, height: Self.squareSize)
+        boardLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        boardLayout.minimumInteritemSpacing = 0
+        boardLayout.minimumLineSpacing = 0
         
         board = UICollectionView(frame: .zero, collectionViewLayout: boardLayout)
         board.delegate = self
@@ -38,11 +45,9 @@ class ChessGameViewController: UIViewController, UICollectionViewDelegate, UICol
         self.view.addSubview(board)
         view.backgroundColor = .green
         board.translatesAutoresizingMaskIntoConstraints = false
-        board.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
-        board.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        board.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        board.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        //board.widthAnchor.constraint(equalToConstant: 40*8).isActive = true
+        board.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+        board.widthAnchor.constraint(equalToConstant: boardSize).isActive = true
+        board.heightAnchor.constraint(equalToConstant: boardSize).isActive = true
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -65,8 +70,15 @@ class ChessGameViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ChessBoardSpot {
-            let data = viewModel.data[indexPath.section][indexPath.item]
-            cell.backgroundColor = data.isWhiteSqaure() ? .lightGray : .black
+            let row = indexPath.section
+            let fileIndex = indexPath.item
+            let piece = viewModel.data.pieceAt(row: row, fileIndex: fileIndex)
+            let spot = viewModel.data.spotAt(row: row, fileIndex: fileIndex)
+            let isWhiteSquare = spot.isWhiteSqaure()
+            cell.piece = piece
+            cell.isWhiteSquare = isWhiteSquare
+            cell.isWhitePiece = (row < 2) ? true : false
+            cell.setupCell()
             return cell
         }
         fatalError("Unable to dequeue subclassed cell")
@@ -79,7 +91,7 @@ class ChessGameViewModel {
     
     let session: ChessGameWebSocketProtocol
     
-    let data = Board.to2DArray()
+    let data: Board = Board.setBoard()
     
     init(whitePlayer: Player,
          blackPlayer: Player,
@@ -91,6 +103,10 @@ class ChessGameViewModel {
 }
 
 class ChessBoardSpot: UICollectionViewCell {
+    var piece: Piece? = nil
+    var isWhiteSquare: Bool = true
+    var isWhitePiece: Bool = true
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -99,9 +115,62 @@ class ChessBoardSpot: UICollectionViewCell {
         fatalError("something")
     }
     
-    func setupCell(color: UIColor) {
-        self.backgroundColor = color
+    func setupCell() {
+        self.backgroundColor = isWhiteSquare ? .white : .black
+        if let piece, let image = piece.getImage(isWhite: isWhitePiece) {
+            let sizedImage = resizeImage(image: image, targetSize: CGSize(width: 40, height: 40))
+            let imageView = UIImageView(image: sizedImage)
+            self.contentView.addSubview(imageView)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.topAnchor.constraint(equalTo: self.contentView.safeAreaLayoutGuide.topAnchor).isActive = true
+            imageView.leftAnchor.constraint(equalTo: self.contentView.safeAreaLayoutGuide.leftAnchor).isActive = true
+        }
     }
+}
+
+extension Piece {
+    func getImage(isWhite: Bool = true) -> UIImage? {
+        switch self {
+        case .P:
+            isWhite ? UIImage(named: "black_pawn") : UIImage(named: "white_pawn")
+        case .K:
+            isWhite ? UIImage(named: "black_king") : UIImage(named: "white_king")
+        case .N:
+            isWhite ? UIImage(named: "black_knight") : UIImage(named: "white_knight")
+        case .Q:
+            isWhite ? UIImage(named: "black_queen") : UIImage(named: "white_queen")
+        case .B:
+            isWhite ? UIImage(named: "black_bishop") : UIImage(named: "white_bishop")
+        case .R:
+            isWhite ? UIImage(named: "black_rook") : UIImage(named: "white_rook")
+        }
+    }
+}
+
+func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+    let size = image.size
+    
+    let widthRatio  = targetSize.width  / size.width
+    let heightRatio = targetSize.height / size.height
+    
+    // Figure out what our orientation is, and use that to form the rectangle
+    var newSize: CGSize
+    if(widthRatio > heightRatio) {
+        newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+    } else {
+        newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+    }
+    
+    // This is the rect that we've calculated out and this is what is actually used below
+    let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+    
+    // Actually do the resizing to the rect using the ImageContext stuff
+    UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+    image.draw(in: rect)
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return newImage!
 }
 
 /*

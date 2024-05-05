@@ -20,7 +20,7 @@ enum Spot: String, CaseIterable {
 
 extension Spot {
     static func construct(row: Int, file: String) -> Spot? {
-        Spot(rawValue: row.description + file)
+        Spot(rawValue: file + row.description)
     }
     
     var row: Int {
@@ -31,7 +31,7 @@ extension Spot {
         self.rawValue.first!.lowercased()
     }
     
-    var files: [String] {
+    static var files: [String] {
         ["a", "b", "c", "d", "e", "f", "g", "h"]
     }
     
@@ -42,7 +42,7 @@ extension Spot {
         
         let num = self.row
         let file = self.file
-        guard let currentFileIndex = self.files.firstIndex(of: file)?.advanced(by: 0) else {
+        guard let currentFileIndex = Self.files.firstIndex(of: file)?.advanced(by: 0) else {
             return nil
         }
         
@@ -55,7 +55,7 @@ extension Spot {
         
         let newNum = num + (up - down)
         let newFileIndex = currentFileIndex + (right - left)
-        let newFile = self.files[newFileIndex]
+        let newFile = Self.files[newFileIndex]
         
         return Self.construct(row: newNum, file: newFile)
     }
