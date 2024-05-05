@@ -59,4 +59,24 @@ extension Spot {
         
         return Self.construct(row: newNum, file: newFile)
     }
+    
+    var adjacent: Set<Self> {
+        var set: Set<Self> = []
+        set.insertIfNotNull(self.move(up: 1))
+        set.insertIfNotNull(self.move(down: 1))
+        set.insertIfNotNull(self.move(right: 1))
+        set.insertIfNotNull(self.move(left: 1))
+        set.insertIfNotNull(self.move(up: 1, right: 1))
+        set.insertIfNotNull(self.move(up: 1, left: 1))
+        set.insertIfNotNull(self.move(down: 1, right: 1))
+        set.insertIfNotNull(self.move(down: 1, left: 1))
+        return set
+    }
+}
+
+extension Set<Spot> {
+    mutating func insertIfNotNull(_ element: Spot?) {
+        guard let element else { return }
+        self.insert(element)
+    }
 }
