@@ -18,7 +18,6 @@
 		01649A492BE69D520013B568 /* PlayerPoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A482BE69D520013B568 /* PlayerPoolViewController.swift */; };
 		01649A4C2BE6A3C70013B568 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A4B2BE6A3C70013B568 /* ViewController.swift */; };
 		01649A4F2BE6A95C0013B568 /* PlayerWaitingToPlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A4E2BE6A95C0013B568 /* PlayerWaitingToPlayModel.swift */; };
-		01649A522BE6AA170013B568 /* PlayerPoolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A512BE6AA170013B568 /* PlayerPoolManager.swift */; };
 		01649A542BE701540013B568 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A532BE701540013B568 /* InitialViewController.swift */; };
 		01649A582BE7020B0013B568 /* InitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A572BE7020B0013B568 /* InitialViewModel.swift */; };
 		01649A5A2BE702240013B568 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A592BE702240013B568 /* Player.swift */; };
@@ -29,6 +28,13 @@
 		01649A662BE732870013B568 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A652BE732870013B568 /* Board.swift */; };
 		01649A682BE807170013B568 /* ChessGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A672BE807170013B568 /* ChessGameViewModel.swift */; };
 		01649A6A2BE807410013B568 /* ChessBoardSpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A692BE807410013B568 /* ChessBoardSpotCollectionViewCell.swift */; };
+		01649A6C2BE80D970013B568 /* ChessBoardCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A6B2BE80D970013B568 /* ChessBoardCollectionViewController.swift */; };
+		01649A6F2BE80E240013B568 /* ChessGameWebSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A6E2BE80E240013B568 /* ChessGameWebSocketProtocol.swift */; };
+		01649A712BE80E530013B568 /* ChessGameWebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A702BE80E530013B568 /* ChessGameWebSocketDelegate.swift */; };
+		01649A732BE80E780013B568 /* GameRequestWebSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A722BE80E780013B568 /* GameRequestWebSocketProtocol.swift */; };
+		01649A752BE80EFF0013B568 /* GameRequestWebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A742BE80EFF0013B568 /* GameRequestWebSocketDelegate.swift */; };
+		01649A772BE80F200013B568 /* ChessGameWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A762BE80F200013B568 /* ChessGameWebSocket.swift */; };
+		01649A792BE80F520013B568 /* GameRequestWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A782BE80F520013B568 /* GameRequestWebSocket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +70,6 @@
 		01649A482BE69D520013B568 /* PlayerPoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPoolViewController.swift; sourceTree = "<group>"; };
 		01649A4B2BE6A3C70013B568 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		01649A4E2BE6A95C0013B568 /* PlayerWaitingToPlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerWaitingToPlayModel.swift; sourceTree = "<group>"; };
-		01649A512BE6AA170013B568 /* PlayerPoolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPoolManager.swift; sourceTree = "<group>"; };
 		01649A532BE701540013B568 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		01649A572BE7020B0013B568 /* InitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewModel.swift; sourceTree = "<group>"; };
 		01649A592BE702240013B568 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -75,6 +80,13 @@
 		01649A652BE732870013B568 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		01649A672BE807170013B568 /* ChessGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessGameViewModel.swift; sourceTree = "<group>"; };
 		01649A692BE807410013B568 /* ChessBoardSpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessBoardSpotCollectionViewCell.swift; sourceTree = "<group>"; };
+		01649A6B2BE80D970013B568 /* ChessBoardCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessBoardCollectionViewController.swift; sourceTree = "<group>"; };
+		01649A6E2BE80E240013B568 /* ChessGameWebSocketProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessGameWebSocketProtocol.swift; sourceTree = "<group>"; };
+		01649A702BE80E530013B568 /* ChessGameWebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessGameWebSocketDelegate.swift; sourceTree = "<group>"; };
+		01649A722BE80E780013B568 /* GameRequestWebSocketProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRequestWebSocketProtocol.swift; sourceTree = "<group>"; };
+		01649A742BE80EFF0013B568 /* GameRequestWebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRequestWebSocketDelegate.swift; sourceTree = "<group>"; };
+		01649A762BE80F200013B568 /* ChessGameWebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessGameWebSocket.swift; sourceTree = "<group>"; };
+		01649A782BE80F520013B568 /* GameRequestWebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRequestWebSocket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				01649A5F2BE730D80013B568 /* Chess */,
-				01649A502BE6AA060013B568 /* Managers */,
 				01649A4D2BE6A8CE0013B568 /* Network */,
 			);
 			path = Core;
@@ -174,6 +185,7 @@
 				01649A482BE69D520013B568 /* PlayerPoolViewController.swift */,
 				01649A532BE701540013B568 /* InitialViewController.swift */,
 				01649A5D2BE7212A0013B568 /* ChessGameViewController.swift */,
+				01649A6B2BE80D970013B568 /* ChessBoardCollectionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -208,16 +220,9 @@
 		01649A4D2BE6A8CE0013B568 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				01649A6D2BE80E080013B568 /* WebSockets */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		01649A502BE6AA060013B568 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				01649A512BE6AA170013B568 /* PlayerPoolManager.swift */,
-			);
-			path = Managers;
 			sourceTree = "<group>";
 		};
 		01649A5F2BE730D80013B568 /* Chess */ = {
@@ -228,6 +233,19 @@
 				01649A652BE732870013B568 /* Board.swift */,
 			);
 			path = Chess;
+			sourceTree = "<group>";
+		};
+		01649A6D2BE80E080013B568 /* WebSockets */ = {
+			isa = PBXGroup;
+			children = (
+				01649A6E2BE80E240013B568 /* ChessGameWebSocketProtocol.swift */,
+				01649A702BE80E530013B568 /* ChessGameWebSocketDelegate.swift */,
+				01649A722BE80E780013B568 /* GameRequestWebSocketProtocol.swift */,
+				01649A742BE80EFF0013B568 /* GameRequestWebSocketDelegate.swift */,
+				01649A762BE80F200013B568 /* ChessGameWebSocket.swift */,
+				01649A782BE80F520013B568 /* GameRequestWebSocket.swift */,
+			);
+			path = WebSockets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,21 +380,27 @@
 			files = (
 				01649A4C2BE6A3C70013B568 /* ViewController.swift in Sources */,
 				01649A5C2BE708BA0013B568 /* PlayerPoolViewModel.swift in Sources */,
+				01649A712BE80E530013B568 /* ChessGameWebSocketDelegate.swift in Sources */,
 				01649A662BE732870013B568 /* Board.swift in Sources */,
 				01649A192BE69A560013B568 /* ChessClient.xcdatamodeld in Sources */,
+				01649A6C2BE80D970013B568 /* ChessBoardCollectionViewController.swift in Sources */,
 				01649A6A2BE807410013B568 /* ChessBoardSpotCollectionViewCell.swift in Sources */,
 				01649A0F2BE69A560013B568 /* AppDelegate.swift in Sources */,
-				01649A522BE6AA170013B568 /* PlayerPoolManager.swift in Sources */,
+				01649A752BE80EFF0013B568 /* GameRequestWebSocketDelegate.swift in Sources */,
 				01649A492BE69D520013B568 /* PlayerPoolViewController.swift in Sources */,
 				01649A582BE7020B0013B568 /* InitialViewModel.swift in Sources */,
+				01649A732BE80E780013B568 /* GameRequestWebSocketProtocol.swift in Sources */,
 				01649A112BE69A560013B568 /* SceneDelegate.swift in Sources */,
 				01649A642BE7319E0013B568 /* Piece.swift in Sources */,
+				01649A6F2BE80E240013B568 /* ChessGameWebSocketProtocol.swift in Sources */,
+				01649A772BE80F200013B568 /* ChessGameWebSocket.swift in Sources */,
 				01649A4F2BE6A95C0013B568 /* PlayerWaitingToPlayModel.swift in Sources */,
 				01649A5A2BE702240013B568 /* Player.swift in Sources */,
 				01649A622BE730F50013B568 /* Spot.swift in Sources */,
 				01649A542BE701540013B568 /* InitialViewController.swift in Sources */,
 				01649A5E2BE7212A0013B568 /* ChessGameViewController.swift in Sources */,
 				01649A682BE807170013B568 /* ChessGameViewModel.swift in Sources */,
+				01649A792BE80F520013B568 /* GameRequestWebSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,22 +49,7 @@ class InitialViewController: UIViewController {
     }
     
     @objc func buttonAction1(sender: UIButton!) {
-        Task {
-            do {
-                let url = URL(string: "http://localhost:8080/user")!
-                var request = URLRequest(url: url)
-                request.httpMethod = "POST"
-                let (data, _) = try await URLSession.shared.data(for: request)
-                if let newPlayer = try? JSONDecoder().decode(Player.self, from: data) {
-                    player = newPlayer
-                    navigationController?.pushViewController(PlayerPoolViewController(player: player), animated: true)
-                } else {
-                    print("Invalid Response")
-                }
-            } catch {
-                print("Failed to Send POST Request \(error)")
-            }
-        }
+        navigationController?.pushViewController(PlayerPoolViewController(), animated: true)
     }
     
     @objc func buttonAction2(sender: UIButton!) {

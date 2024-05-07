@@ -14,8 +14,8 @@ class PlayerPoolViewController: UIViewController {
     private let availablePlayersTableView = UITableView()
     private var safeArea: UILayoutGuide!
     
-    init(player: Player) {
-        self.viewModel = PlayerPoolViewModel(player: player)
+    init() {
+        self.viewModel = PlayerPoolViewModel()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,6 +28,7 @@ class PlayerPoolViewController: UIViewController {
         super.viewDidLoad()
         safeArea = view.layoutMarginsGuide
         setAvailablePlayersTableView()
+        viewModel.onLoad()
     }
     
     func setAvailablePlayersTableView() {
