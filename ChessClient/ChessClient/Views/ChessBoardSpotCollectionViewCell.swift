@@ -12,6 +12,8 @@ class ChessBoardSpot: UICollectionViewCell {
     var piece: Piece? = nil
     var isWhiteSquare: Bool = true
     var isWhitePiece: Bool = true
+    // TODO: implement this
+    var shouldAddHighlight: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +25,7 @@ class ChessBoardSpot: UICollectionViewCell {
     
     func setupCell() {
         self.backgroundColor = isWhiteSquare ? .white : .black
-        if let piece, let image = piece.getImage(isWhite: isWhitePiece) {
+        if let piece, let image = piece.image {
             let sizedImage = resizeImage(image: image, targetSize: CGSize(width: 40, height: 40))
             let imageView = UIImageView(image: sizedImage)
             self.contentView.addSubview(imageView)

@@ -9,24 +9,34 @@ import Foundation
 import UIKit
 
 enum Piece: String, CaseIterable {
-    case P, K, N, Q, B, R
-}
-
-extension Piece {
-    func getImage(isWhite: Bool = true) -> UIImage? {
+    case WP, BP, WK, BK, WN, BN, WQ, BQ, WB, BB, WR, BR
+    
+    var image: UIImage? {
         switch self {
-        case .P:
-            isWhite ? UIImage(named: "black_pawn") : UIImage(named: "white_pawn")
-        case .K:
-            isWhite ? UIImage(named: "black_king") : UIImage(named: "white_king")
-        case .N:
-            isWhite ? UIImage(named: "black_knight") : UIImage(named: "white_knight")
-        case .Q:
-            isWhite ? UIImage(named: "black_queen") : UIImage(named: "white_queen")
-        case .B:
-            isWhite ? UIImage(named: "black_bishop") : UIImage(named: "white_bishop")
-        case .R:
-            isWhite ? UIImage(named: "black_rook") : UIImage(named: "white_rook")
+        case .WP:
+            UIImage(named: "white_pawn")
+        case .BP:
+            UIImage(named: "black_pawn")
+        case .WK:
+            UIImage(named: "white_king")
+        case .BK:
+            UIImage(named: "black_king")
+        case .WN:
+            UIImage(named: "white_knight")
+        case .BN:
+            UIImage(named: "black_knight")
+        case .WQ:
+            UIImage(named: "white_queen")
+        case .BQ:
+            UIImage(named: "black_queen")
+        case .WB:
+            UIImage(named: "white_bishop")
+        case .BB:
+            UIImage(named: "black_bishop")
+        case .WR:
+            UIImage(named: "white_rook")
+        case .BR:
+            UIImage(named: "black_rook")
         }
     }
 }

@@ -31,6 +31,10 @@ extension Spot {
         self.rawValue.first!.lowercased()
     }
     
+    var fileIndex: Int {
+        Self.files.firstIndex(of: self.rawValue.first!.lowercased())!
+    }
+    
     static var files: [String] {
         ["a", "b", "c", "d", "e", "f", "g", "h"]
     }
