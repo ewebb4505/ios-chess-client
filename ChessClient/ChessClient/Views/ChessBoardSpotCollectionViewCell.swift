@@ -7,13 +7,16 @@
 
 import Foundation
 import UIKit
+import Combine
 
 class ChessBoardSpot: UICollectionViewCell {
     var piece: Piece? = nil
+    var square: Spot? = nil
     var isWhiteSquare: Bool = true
     var isWhitePiece: Bool = true
     // TODO: implement this
     var shouldAddHighlight: Bool = false
+    var colorChangeSubscriber: AnyCancellable? = nil
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +27,7 @@ class ChessBoardSpot: UICollectionViewCell {
     }
     
     func setupCell() {
-        self.backgroundColor = isWhiteSquare ? .white : .black
+        changeCellBackgroundColor()
         if let piece, let image = piece.image {
             let sizedImage = resizeImage(image: image, targetSize: CGSize(width: 40, height: 40))
             let imageView = UIImageView(image: sizedImage)
@@ -33,6 +36,10 @@ class ChessBoardSpot: UICollectionViewCell {
             imageView.topAnchor.constraint(equalTo: self.contentView.safeAreaLayoutGuide.topAnchor).isActive = true
             imageView.leftAnchor.constraint(equalTo: self.contentView.safeAreaLayoutGuide.leftAnchor).isActive = true
         }
+    }
+    
+    func changeCellBackgroundColor() {
+        self.backgroundColor = shouldAddHighlight ? .orange : isWhiteSquare ? .white : .black
     }
 }
 

@@ -40,7 +40,7 @@ extension Spot {
     }
     
     func move(up: Int = 0, down: Int = 0, left: Int = 0, right: Int = 0) -> Self? {
-        guard (up > 8 || down > 8 || left > 8 || right > 8) else {
+        guard !(up > 8 || down > 8 || left > 8 || right > 8) else {
             return nil
         }
         
@@ -55,7 +55,9 @@ extension Spot {
         && ((currentFileIndex+1) - left >= 1)
         &&  ((currentFileIndex+1) + right <= 8)
         
-        guard isStillInBounds else { return nil }
+        guard isStillInBounds else {
+            return nil
+        }
         
         let newNum = num + (up - down)
         let newFileIndex = currentFileIndex + (right - left)

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 class ChessBoardCollectionViewController: UICollectionViewController {
     
@@ -58,7 +59,13 @@ class ChessBoardCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ChessBoardSpot {
-            let (spot, piece) = getSpotAndPiece(indexPath)
+            let row = 7 - indexPath.section
+            let fileIndex = indexPath.row
+            // print("row being set: \(row) / fileIndex being set: \(fileIndex) / item \(indexPath.item)")
+            
+            let (spot, piece) = getSpotAndPiece(row, fileIndex)
+            // print(spot, piece)
+            
             let isWhiteSquare = spot.isWhiteSqaure()
             cell.piece = piece
             cell.isWhiteSquare = isWhiteSquare
@@ -73,7 +80,12 @@ class ChessBoardCollectionViewController: UICollectionViewController {
         // first determine if it's this users turn. if not we will do premoves later. if so get spot and pieces
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ChessBoardSpot {
             if isWhitesTurn {
-                let (spot, piece) = getSpotAndPiece(indexPath)
+                let row = 7 - indexPath.section
+                let fileIndex = indexPath.row
+    
+                print("TAPPED ON \n row being set: \(row) / fileIndex being set: \(fileIndex) / item \(indexPath.item)")
+                
+                let (spot, piece) = getSpotAndPiece(row, fileIndex)
                 print(spot.debugDescription, piece.debugDescription)
                 // next highlight valid sqaures where this piece can move
                 isMakingMove.toggle()
@@ -84,22 +96,23 @@ class ChessBoardCollectionViewController: UICollectionViewController {
                         return
                     }
                     pieceWantingToBeMoved = cell.piece
-                    for spots in spotsThisPieceCanGo {
-                        var possibleSpot = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: IndexPath(row: spots.row, section: spots.fileIndex)) as! ChessBoardSpot
+                    for spot in spotsThisPieceCanGo {
+                        print(spot)
+                        var possibleSpot = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: IndexPath(row: spot.row, section: spot.fileIndex)) as! ChessBoardSpot
+                        // TODO: figure out why this doesn't work
                         possibleSpot.shouldAddHighlight = true
+                        possibleSpot.changeCellBackgroundColor()
                     }
                 } else {
                     print("TODO")
                 }
             }
+        } else {
+            fatalError("Unable to dequeue subclassed cell")
         }
-        
-        fatalError("Unable to dequeue subclassed cell")
     }
     
-    private func getSpotAndPiece(_ indexPath: IndexPath) -> (Spot, Piece?) {
-        let row = indexPath.section
-        let fileIndex = indexPath.item
+    private func getSpotAndPiece(_ row: Int, _ fileIndex: Int) -> (Spot, Piece?) {
         let piece = data.pieceAt(row: row, fileIndex: fileIndex)
         let spot = data.spotAt(row: row, fileIndex: fileIndex)
         return (spot, piece)
@@ -121,12 +134,13 @@ extension Piece: CustomDebugStringConvertible {
 extension Piece {
     func reaches(from spot: Spot,
                  on board: Board) -> Set<Spot>? {
+        var spots: Set<Spot>? = nil
         switch self {
         case .WP:
+            // TODO: need to determine if this is the first time this pawn is moving. If so consider going up: 2
             let spotAheadOfWhitePawn = spot.move(up: 1)
             let spotAttackedToRightOfWhitePawn = spot.move(up: 1, right: 1)
-            let spotAttackedToLeftOfWhitePawn = spot.move(up:1, left: 1)
-            var spots: Set<Spot>? = nil
+            let spotAttackedToLeftOfWhitePawn = spot.move(up: 1, left: 1)
             
             if let spotAheadOfWhitePawn {
                 spots = .init()
@@ -171,7 +185,7 @@ extension Piece {
         case .BR:
             return .init()
         }
-        return nil
+        return spots
     }
     //    fun Pieces.squaresAttackedBy(piece: Piece, at: BoardSpot, isWhitePiece: Boolean = true): Set<BoardSpot> {
     //        when(piece) {

@@ -29,23 +29,6 @@ class ChessGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        boardLayout = UICollectionViewFlowLayout()
-//        boardLayout.itemSize = CGSize(width: Self.squareSize, height: Self.squareSize)
-//        boardLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        boardLayout.minimumInteritemSpacing = 0
-//        boardLayout.minimumLineSpacing = 0
-//        
-//        board = UICollectionView(frame: .zero, collectionViewLayout: boardLayout)
-//        board.delegate = self
-//        board.dataSource = self
-//        board.register(ChessBoardSpot.self, forCellWithReuseIdentifier: "cell")
-//        self.view.addSubview(board)
-//        view.backgroundColor = .green
-//        board.translatesAutoresizingMaskIntoConstraints = false
-//        board.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
-//        board.widthAnchor.constraint(equalToConstant: boardSize).isActive = true
-//        board.heightAnchor.constraint(equalToConstant: boardSize).isActive = true
-        
         let boardVC = ChessBoardCollectionViewController(board: viewModel.data)
         addChild(boardVC)
         
