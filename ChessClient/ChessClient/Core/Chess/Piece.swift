@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum Piece: String, CaseIterable {
+enum Piece: String, CaseIterable, Hashable {
     case WP, BP, WK, BK, WN, BN, WQ, BQ, WB, BB, WR, BR
     
     var image: UIImage? {
