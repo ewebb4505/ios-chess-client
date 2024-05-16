@@ -19,11 +19,13 @@ class ChessBoardSpotModel: Hashable, Identifiable {
     }
     
     static func == (lhs: ChessBoardSpotModel, rhs: ChessBoardSpotModel) -> Bool {
-        lhs.id == rhs.id && lhs.piece == rhs.piece
+        lhs.id == rhs.id && lhs.piece == rhs.piece && lhs.isWhiteSquare == rhs.isWhiteSquare && lhs.shouldAddHighlight == rhs.shouldAddHighlight
     }
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(piece)
+        hasher.combine(isWhiteSquare)
+        hasher.combine(shouldAddHighlight)
     }
 }

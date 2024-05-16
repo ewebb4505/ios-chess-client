@@ -11,10 +11,11 @@ import UIKit
 class ChessGameViewController: UIViewController {
     let viewModel: ChessGameViewModel
     
-    // UI elements
-    var boardSize: CGFloat {
-        44 * 8
-    }
+    // properties that determine the size of the chess board.
+    // this is only good for the current layout. In the future this should be adaptive when the user changes to landscape mode
+    let screenWidth = UIScreen.main.bounds.width
+    var boardSize: CGFloat { screenWidth }
+    var squareSize: CGFloat { screenWidth / 8 }
     
     init(whitePlayer: Player = Player(id: UUID()), blackPlayer: Player = Player(id: UUID())) {
         viewModel = ChessGameViewModel(whitePlayer: whitePlayer, blackPlayer: blackPlayer)
@@ -29,9 +30,9 @@ class ChessGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let boardVC = ChessBoardCollectionViewController(board: viewModel.data)
+        // setting up the chess board collection view controller
+        let boardVC = ChessBoardCollectionViewController(viewModel: viewModel, squareSize: squareSize)
         addChild(boardVC)
-        
         view.addSubview(boardVC.view)
         view.backgroundColor = .green
         boardVC.view.translatesAutoresizingMaskIntoConstraints = false

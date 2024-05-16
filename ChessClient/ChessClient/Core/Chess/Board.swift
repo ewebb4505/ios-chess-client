@@ -15,10 +15,10 @@ extension Board {
         var board: Self = [:]
         board[.a8] = .BR; board[.b8] = .BN; board[.c8] = .BB; board[.d8] = .BQ; board[.e8] = .BK; board[.f8] = .BB; board[.g8] = .BN; board[.h8] = .BR
         board[.a7] = .BP; board[.b7] = .BP; board[.c7] = .BP; board[.d7] = .BP; board[.e7] = .BP; board[.f7] = .BP; board[.g7] = .BP; board[.h7] = .BP
-        board[.a6] = nil; board[.b6] = nil; board[.c6] = nil; board[.d6] = nil; board[.e6] = nil; board[.f6] = nil; board[.g6] = nil; board[.h6] = nil
-        board[.a5] = nil; board[.b5] = nil; board[.c5] = nil; board[.d5] = nil; board[.e5] = nil; board[.f5] = nil; board[.g5] = nil; board[.h5] = nil
-        board[.a4] = nil; board[.b4] = nil; board[.c4] = nil; board[.d4] = nil; board[.e4] = nil; board[.f4] = nil; board[.g4] = nil; board[.h4] = nil
-        board[.a3] = nil; board[.b3] = nil; board[.c3] = nil; board[.d3] = nil; board[.e3] = nil; board[.f3] = nil; board[.g3] = nil; board[.h3] = nil
+        board[.a6] = nil as Piece?; board[.b6] = nil as Piece?; board[.c6] = nil as Piece?; board[.d6] = nil as Piece?; board[.e6] = nil as Piece?; board[.f6] = nil as Piece?; board[.g6] = nil as Piece?; board[.h6] = nil as Piece?
+        board[.a5] = nil as Piece?; board[.b5] = nil as Piece?; board[.c5] = nil as Piece?; board[.d5] = nil as Piece?; board[.e5] = nil as Piece?; board[.f5] = nil as Piece?; board[.g5] = nil as Piece?; board[.h5] = nil as Piece?
+        board[.a4] = nil as Piece?; board[.b4] = nil as Piece?; board[.c4] = nil as Piece?; board[.d4] = nil as Piece?; board[.e4] = nil as Piece?; board[.f4] = nil as Piece?; board[.g4] = nil as Piece?; board[.h4] = nil as Piece?
+        board[.a3] = nil as Piece?; board[.b3] = nil as Piece?; board[.c3] = nil as Piece?; board[.d3] = nil as Piece?; board[.e3] = nil as Piece?; board[.f3] = nil as Piece?; board[.g3] = nil as Piece?; board[.h3] = nil as Piece?
         board[.a2] = .WP; board[.b2] = .WP; board[.c2] = .WP; board[.d2] = .WP; board[.e2] = .WP; board[.f2] = .WP; board[.g2] = .WP; board[.h2] = .WP
         board[.a1] = .WR; board[.b1] = .WN; board[.c1] = .WB; board[.d1] = .WQ; board[.e1] = .WK; board[.f1] = .WB; board[.g1] = .WN; board[.h1] = .WR
         return board

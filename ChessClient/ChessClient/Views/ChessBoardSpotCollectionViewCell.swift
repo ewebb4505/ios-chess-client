@@ -37,8 +37,8 @@ class ChessBoardSpot: UICollectionViewCell {
             let imageView = UIImageView(image: sizedImage)
             self.contentView.addSubview(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.topAnchor.constraint(equalTo: self.contentView.safeAreaLayoutGuide.topAnchor).isActive = true
-            imageView.leftAnchor.constraint(equalTo: self.contentView.safeAreaLayoutGuide.leftAnchor).isActive = true
+            imageView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
+            imageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
         }
     }
     
