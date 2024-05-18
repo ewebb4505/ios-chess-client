@@ -25,13 +25,13 @@ class InitialViewController: UIViewController {
         
         let button1 = UIButton()
         button1.backgroundColor = .blue
-        button1.setTitle("Create User", for: .normal)
+        button1.setTitle("Play With Someone!", for: .normal)
         button1.sizeToFit()
         button1.addTarget(self, action: #selector(buttonAction1), for: .touchUpInside)
         
         let button2 = UIButton()
         button2.backgroundColor = .green
-        button2.setTitle("Test Chess Game", for: .normal)
+        button2.setTitle("Test The Board", for: .normal)
         button2.sizeToFit()
         button2.addTarget(self, action: #selector(buttonAction2), for: .touchUpInside)
         
@@ -49,7 +49,7 @@ class InitialViewController: UIViewController {
     }
     
     @objc func buttonAction1(sender: UIButton!) {
-        navigationController?.pushViewController(PlayerPoolViewController(), animated: true)
+        navigationController?.pushViewController(LoadingGameViewController(), animated: true)
     }
     
     @objc func buttonAction2(sender: UIButton!) {

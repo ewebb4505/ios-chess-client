@@ -17,7 +17,7 @@ class ChessGameViewController: UIViewController {
     var boardSize: CGFloat { screenWidth }
     var squareSize: CGFloat { screenWidth / 8 }
     
-    init(whitePlayer: Player = Player(id: UUID()), blackPlayer: Player = Player(id: UUID())) {
+    init(whitePlayer: Player = Player(id: ""), blackPlayer: Player = Player(id: "")) {
         viewModel = ChessGameViewModel(whitePlayer: whitePlayer, blackPlayer: blackPlayer)
         super.init(nibName: nil, bundle: nil)
     }

@@ -36,6 +36,7 @@
 		01649A772BE80F200013B568 /* ChessGameWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A762BE80F200013B568 /* ChessGameWebSocket.swift */; };
 		01649A792BE80F520013B568 /* GameRequestWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A782BE80F520013B568 /* GameRequestWebSocket.swift */; };
 		01649A7B2BEBEEA10013B568 /* ChessBoardSpotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A7A2BEBEEA10013B568 /* ChessBoardSpotModel.swift */; };
+		01649A7D2BF849D30013B568 /* LoadingGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01649A7C2BF849D30013B568 /* LoadingGameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		01649A762BE80F200013B568 /* ChessGameWebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessGameWebSocket.swift; sourceTree = "<group>"; };
 		01649A782BE80F520013B568 /* GameRequestWebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRequestWebSocket.swift; sourceTree = "<group>"; };
 		01649A7A2BEBEEA10013B568 /* ChessBoardSpotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessBoardSpotModel.swift; sourceTree = "<group>"; };
+		01649A7C2BF849D30013B568 /* LoadingGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 		01649A452BE69D200013B568 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				01649A7C2BF849D30013B568 /* LoadingGameViewController.swift */,
 				01649A482BE69D520013B568 /* PlayerPoolViewController.swift */,
 				01649A532BE701540013B568 /* InitialViewController.swift */,
 				01649A5D2BE7212A0013B568 /* ChessGameViewController.swift */,
@@ -401,6 +404,7 @@
 				01649A4F2BE6A95C0013B568 /* PlayerWaitingToPlayModel.swift in Sources */,
 				01649A5A2BE702240013B568 /* Player.swift in Sources */,
 				01649A622BE730F50013B568 /* Spot.swift in Sources */,
+				01649A7D2BF849D30013B568 /* LoadingGameViewController.swift in Sources */,
 				01649A542BE701540013B568 /* InitialViewController.swift in Sources */,
 				01649A5E2BE7212A0013B568 /* ChessGameViewController.swift in Sources */,
 				01649A682BE807170013B568 /* ChessGameViewModel.swift in Sources */,

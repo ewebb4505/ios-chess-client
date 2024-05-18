@@ -8,5 +8,5 @@
 import Foundation
 
 struct Player: Identifiable, Codable {
-    var id: UUID
+    var id: String
 }
