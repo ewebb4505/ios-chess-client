@@ -33,6 +33,12 @@ class LoadingGameViewController: UIViewController {
             await getUserId()
             await addUserToPool()
             await getAUserPlayerToPlay()
+            
+            if player != nil && gameConnection != nil {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: DispatchWorkItem(block: {
+                    self.navigationController?.pushViewController(ChessGameViewController(), animated: true)
+                }))
+            }
         }
     }
     
