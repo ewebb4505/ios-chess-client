@@ -10,6 +10,8 @@ import UIKit
 
 class ChessGameViewController: UIViewController {
     let viewModel: ChessGameViewModel
+    let gameConnection: GameConnection?
+    let isLiveGame: Bool
     
     // properties that determine the size of the chess board.
     // this is only good for the current layout. In the future this should be adaptive when the user changes to landscape mode
@@ -17,8 +19,12 @@ class ChessGameViewController: UIViewController {
     var boardSize: CGFloat { screenWidth }
     var squareSize: CGFloat { screenWidth / 8 }
     
-    init(whitePlayer: Player = Player(id: ""), blackPlayer: Player = Player(id: "")) {
-        viewModel = ChessGameViewModel(whitePlayer: whitePlayer, blackPlayer: blackPlayer)
+    init(gameConnection: GameConnection? = nil, isLiveGame: Bool = false) {
+        self.gameConnection = gameConnection
+        self.isLiveGame = isLiveGame
+        viewModel = ChessGameViewModel(id: gameConnection?.gameId ?? "",
+                                       whitePlayer: Player(id: gameConnection?.white ?? ""),
+                                       blackPlayer: Player(id: gameConnection?.black ?? ""))
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,6 +35,29 @@ class ChessGameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // setting up game details at the top of the view
+        if let gameConnection {
+            var stackView = UIStackView()
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.axis = .vertical
+        
+            let whitePlayerLabel = UILabel()
+            let blackPlayerLabel = UILabel()
+            let gameIdLabel = UILabel()
+            whitePlayerLabel.text = "White: \(gameConnection.white)"
+            blackPlayerLabel.text = "Black: \(gameConnection.black)"
+            gameIdLabel.text = "GameId: \(gameConnection.gameId)"
+            
+            stackView.addArrangedSubview(whitePlayerLabel)
+            stackView.addArrangedSubview(blackPlayerLabel)
+            stackView.addArrangedSubview(gameIdLabel)
+            
+            view.addSubview(stackView)
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+            
+        }
         
         // setting up the chess board collection view controller
         let boardVC = ChessBoardCollectionViewController(viewModel: viewModel, squareSize: squareSize)

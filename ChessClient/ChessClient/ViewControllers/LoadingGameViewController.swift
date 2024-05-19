@@ -35,8 +35,8 @@ class LoadingGameViewController: UIViewController {
             await getAUserPlayerToPlay()
             
             if player != nil && gameConnection != nil {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: DispatchWorkItem(block: {
-                    self.navigationController?.pushViewController(ChessGameViewController(), animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: DispatchWorkItem(block: { [weak self] in
+                    self?.navigationController?.pushViewController(ChessGameViewController(gameConnection: self?.gameConnection, isLiveGame: true), animated: true)
                 }))
             }
         }
@@ -127,4 +127,6 @@ class LoadingGameViewController: UIViewController {
 
 struct GameConnection: Codable {
     var gameId: String
+    var white: String
+    var black: String
 }

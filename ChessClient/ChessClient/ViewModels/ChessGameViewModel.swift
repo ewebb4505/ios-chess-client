@@ -13,7 +13,7 @@ class ChessGameViewModel {
         var firstTap: (spot: Spot, piece: Piece)? = nil
         var secondTap: (spot: Spot, piece: Piece?)? = nil
     }
-    
+    let id: String
     let whitePlayer: Player
     let blackPlayer: Player
     let session: ChessGameWebSocketProtocol
@@ -25,12 +25,29 @@ class ChessGameViewModel {
     var tapTracker = TapTracker()
     var highlightedSpots: Set<ChessBoardSpotModel> = []
     
-    init(whitePlayer: Player,
+    init(id: String,
+         whitePlayer: Player,
          blackPlayer: Player,
-         session: ChessGameWebSocketProtocol = ChessGameWebSocket(session: URLSession(configuration: .default, delegate: ChessGameWebSocketDelegate(), delegateQueue: .main), url: URL(string: "ws://127.0.0.1:8080/players_waiting_for_game")!)) {
+         session: ChessGameWebSocketProtocol = ChessGameWebSocket(session: URLSession(configuration: .default, 
+                                                                                      delegate: ChessGameWebSocketDelegate(),
+                                                                                      delegateQueue: .main),
+                                                                  url: URL(string: "ws://127.0.0.1:8080/players_waiting_for_game")!)) {
         self.whitePlayer = whitePlayer
         self.blackPlayer = blackPlayer
         self.session = session
+        self.id = id
+    }
+    
+    init(id: String,
+         whitePlayer: Player,
+         blackPlayer: Player) {
+        self.whitePlayer = whitePlayer
+        self.blackPlayer = blackPlayer
+        self.session = ChessGameWebSocket(session: URLSession(configuration: .default,
+                                                              delegate: ChessGameWebSocketDelegate(),
+                                                              delegateQueue: .main),
+                                          url: URL(string: "ws://127.0.0.1:8080/game?gameId=\(id)")!)
+        self.id = id
     }
     
     func updateBoard() {
