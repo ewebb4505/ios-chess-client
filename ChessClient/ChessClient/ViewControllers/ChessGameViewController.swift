@@ -12,6 +12,7 @@ class ChessGameViewController: UIViewController {
     let viewModel: ChessGameViewModel
     let gameConnection: GameConnection?
     let isLiveGame: Bool
+    let thisPlayer: Player
     
     // properties that determine the size of the chess board.
     // this is only good for the current layout. In the future this should be adaptive when the user changes to landscape mode
@@ -19,9 +20,10 @@ class ChessGameViewController: UIViewController {
     var boardSize: CGFloat { screenWidth }
     var squareSize: CGFloat { screenWidth / 8 }
     
-    init(gameConnection: GameConnection? = nil, isLiveGame: Bool = false) {
+    init(thisPlayer: Player, gameConnection: GameConnection? = nil, isLiveGame: Bool = false) {
         self.gameConnection = gameConnection
         self.isLiveGame = isLiveGame
+        self.thisPlayer = thisPlayer
         viewModel = ChessGameViewModel(id: gameConnection?.gameId ?? "",
                                        whitePlayer: Player(id: gameConnection?.white ?? ""),
                                        blackPlayer: Player(id: gameConnection?.black ?? ""))
@@ -38,16 +40,20 @@ class ChessGameViewController: UIViewController {
         
         // setting up game details at the top of the view
         if let gameConnection {
-            var stackView = UIStackView()
+            let stackView = UIStackView()
             stackView.translatesAutoresizingMaskIntoConstraints = false
             stackView.axis = .vertical
         
             let whitePlayerLabel = UILabel()
             let blackPlayerLabel = UILabel()
             let gameIdLabel = UILabel()
-            whitePlayerLabel.text = "White: \(gameConnection.white)"
-            blackPlayerLabel.text = "Black: \(gameConnection.black)"
+            whitePlayerLabel.text = "White: \(gameConnection.white) \(thisPlayer.id == gameConnection.white ? "(you)" : "")"
+            blackPlayerLabel.text = "Black: \(gameConnection.black) \(thisPlayer.id == gameConnection.black ? "(you)" : "")"
             gameIdLabel.text = "GameId: \(gameConnection.gameId)"
+            
+            whitePlayerLabel.font = .systemFont(ofSize: 12)
+            blackPlayerLabel.font = .systemFont(ofSize: 12)
+            gameIdLabel.font = .systemFont(ofSize: 12)
             
             stackView.addArrangedSubview(whitePlayerLabel)
             stackView.addArrangedSubview(blackPlayerLabel)
@@ -60,7 +66,7 @@ class ChessGameViewController: UIViewController {
         }
         
         // setting up the chess board collection view controller
-        let boardVC = ChessBoardCollectionViewController(viewModel: viewModel, squareSize: squareSize)
+        let boardVC = ChessBoardCollectionViewController(thisPlayer: thisPlayer, viewModel: viewModel, squareSize: squareSize)
         addChild(boardVC)
         view.addSubview(boardVC.view)
         view.backgroundColor = .green

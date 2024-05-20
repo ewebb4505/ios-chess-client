@@ -53,6 +53,6 @@ class InitialViewController: UIViewController {
     }
     
     @objc func buttonAction2(sender: UIButton!) {
-        navigationController?.pushViewController(ChessGameViewController(), animated: true)
+        navigationController?.pushViewController(ChessGameViewController(thisPlayer: Player(id: "")), animated: true)
     }
 }

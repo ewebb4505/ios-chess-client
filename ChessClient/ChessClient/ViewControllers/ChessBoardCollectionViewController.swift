@@ -11,15 +11,17 @@ import Combine
 
 class ChessBoardCollectionViewController: UICollectionViewController {
     let viewModel: ChessGameViewModel
+    let thisPlayer: Player
     
     private lazy var dataSource = createDataSource()
 
-    init(viewModel: ChessGameViewModel, squareSize: CGFloat) {
+    init(thisPlayer: Player, viewModel: ChessGameViewModel, squareSize: CGFloat) {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: squareSize, height: squareSize)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
+        self.thisPlayer = thisPlayer
         self.viewModel = viewModel
         super.init(collectionViewLayout: layout)
     }
@@ -34,7 +36,7 @@ class ChessBoardCollectionViewController: UICollectionViewController {
         collectionView.delegate = self
         collectionView.register(ChessBoardSpot.self, forCellWithReuseIdentifier: "cell")
         collectionView.dataSource = dataSource
-        dataSource.apply(dataSource.createInitialSnapshot())
+        dataSource.apply(dataSource.createInitialSnapshot(thisPlayerIsWhitePieces: thisPlayer.id == viewModel.whitePlayer.id))
     }
     
     func createDataSource() -> UICollectionViewDiffableDataSource<Int, ChessBoardSpotModel> {
@@ -47,10 +49,10 @@ class ChessBoardCollectionViewController: UICollectionViewController {
                 fatalError("Could not dequeue proper ChessBoardSpot class")
             }
             print("RELOADING: ", itemIdentifier.id, indexPath.row, indexPath.section)
-            print(viewModel.data)
-            let row = 7 - indexPath.section
+            
+            let row = thisPlayer.id == viewModel.whitePlayer.id ? 7 - indexPath.section : indexPath.section
             let fileIndex = indexPath.row
-            let (spot, piece) = self.getSpotAndPiece(row, fileIndex)
+            let (_, piece) = self.getSpotAndPiece(row, fileIndex)
             itemIdentifier.piece = piece
             cell.setSpotModel(itemIdentifier)
             cell.setView()
@@ -313,25 +315,47 @@ extension Piece: CustomDebugStringConvertible {
 }
 
 extension UICollectionViewDiffableDataSource<Int, ChessBoardSpotModel> {
-    func createInitialSnapshot() -> NSDiffableDataSourceSnapshot<Int, ChessBoardSpotModel> {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, ChessBoardSpotModel>()
-        let row8 = [ChessBoardSpotModel(square: .a8), ChessBoardSpotModel(square: .b8), ChessBoardSpotModel(square: .c8), ChessBoardSpotModel(square: .d8), ChessBoardSpotModel(square: .e8), ChessBoardSpotModel(square: .f8), ChessBoardSpotModel(square: .g8), ChessBoardSpotModel(square: .h8)]
-        let row7 = [ChessBoardSpotModel(square: .a7), ChessBoardSpotModel(square: .b7), ChessBoardSpotModel(square: .c7), ChessBoardSpotModel(square: .d7), ChessBoardSpotModel(square: .e7), ChessBoardSpotModel(square: .f7), ChessBoardSpotModel(square: .g7), ChessBoardSpotModel(square: .h7)]
-        let row6 = [ChessBoardSpotModel(square: .a6), ChessBoardSpotModel(square: .b6), ChessBoardSpotModel(square: .c6), ChessBoardSpotModel(square: .d6), ChessBoardSpotModel(square: .e6), ChessBoardSpotModel(square: .f6), ChessBoardSpotModel(square: .g6), ChessBoardSpotModel(square: .h6)]
-        let row5 = [ChessBoardSpotModel(square: .a5), ChessBoardSpotModel(square: .b5), ChessBoardSpotModel(square: .c5), ChessBoardSpotModel(square: .d5), ChessBoardSpotModel(square: .e5), ChessBoardSpotModel(square: .f5), ChessBoardSpotModel(square: .g5), ChessBoardSpotModel(square: .h5)]
-        let row4 = [ChessBoardSpotModel(square: .a4), ChessBoardSpotModel(square: .b4), ChessBoardSpotModel(square: .c4), ChessBoardSpotModel(square: .d4), ChessBoardSpotModel(square: .e4), ChessBoardSpotModel(square: .f4), ChessBoardSpotModel(square: .g4), ChessBoardSpotModel(square: .h4)]
-        let row3 = [ChessBoardSpotModel(square: .a3), ChessBoardSpotModel(square: .b3), ChessBoardSpotModel(square: .c3), ChessBoardSpotModel(square: .d3), ChessBoardSpotModel(square: .e3), ChessBoardSpotModel(square: .f3), ChessBoardSpotModel(square: .g3), ChessBoardSpotModel(square: .h3)]
-        let row2 = [ChessBoardSpotModel(square: .a2), ChessBoardSpotModel(square: .b2), ChessBoardSpotModel(square: .c2), ChessBoardSpotModel(square: .d2), ChessBoardSpotModel(square: .e2), ChessBoardSpotModel(square: .f2), ChessBoardSpotModel(square: .g2), ChessBoardSpotModel(square: .h2)]
-        let row1 = [ChessBoardSpotModel(square: .a1), ChessBoardSpotModel(square: .b1), ChessBoardSpotModel(square: .c1), ChessBoardSpotModel(square: .d1), ChessBoardSpotModel(square: .e1), ChessBoardSpotModel(square: .f1), ChessBoardSpotModel(square: .g1), ChessBoardSpotModel(square: .h1)]
-        snapshot.appendSections([7, 6, 5, 4, 3, 2, 1, 0])
-        snapshot.appendItems(row8, toSection: 7)
-        snapshot.appendItems(row7, toSection: 6)
-        snapshot.appendItems(row6, toSection: 5)
-        snapshot.appendItems(row5, toSection: 4)
-        snapshot.appendItems(row4, toSection: 3)
-        snapshot.appendItems(row3, toSection: 2)
-        snapshot.appendItems(row2, toSection: 1)
-        snapshot.appendItems(row1, toSection: 0)
-        return snapshot
+    func createInitialSnapshot(thisPlayerIsWhitePieces: Bool) -> NSDiffableDataSourceSnapshot<Int, ChessBoardSpotModel> {
+        if thisPlayerIsWhitePieces {
+            var snapshot = NSDiffableDataSourceSnapshot<Int, ChessBoardSpotModel>()
+            let row8 = [ChessBoardSpotModel(square: .a8), ChessBoardSpotModel(square: .b8), ChessBoardSpotModel(square: .c8), ChessBoardSpotModel(square: .d8), ChessBoardSpotModel(square: .e8), ChessBoardSpotModel(square: .f8), ChessBoardSpotModel(square: .g8), ChessBoardSpotModel(square: .h8)]
+            let row7 = [ChessBoardSpotModel(square: .a7), ChessBoardSpotModel(square: .b7), ChessBoardSpotModel(square: .c7), ChessBoardSpotModel(square: .d7), ChessBoardSpotModel(square: .e7), ChessBoardSpotModel(square: .f7), ChessBoardSpotModel(square: .g7), ChessBoardSpotModel(square: .h7)]
+            let row6 = [ChessBoardSpotModel(square: .a6), ChessBoardSpotModel(square: .b6), ChessBoardSpotModel(square: .c6), ChessBoardSpotModel(square: .d6), ChessBoardSpotModel(square: .e6), ChessBoardSpotModel(square: .f6), ChessBoardSpotModel(square: .g6), ChessBoardSpotModel(square: .h6)]
+            let row5 = [ChessBoardSpotModel(square: .a5), ChessBoardSpotModel(square: .b5), ChessBoardSpotModel(square: .c5), ChessBoardSpotModel(square: .d5), ChessBoardSpotModel(square: .e5), ChessBoardSpotModel(square: .f5), ChessBoardSpotModel(square: .g5), ChessBoardSpotModel(square: .h5)]
+            let row4 = [ChessBoardSpotModel(square: .a4), ChessBoardSpotModel(square: .b4), ChessBoardSpotModel(square: .c4), ChessBoardSpotModel(square: .d4), ChessBoardSpotModel(square: .e4), ChessBoardSpotModel(square: .f4), ChessBoardSpotModel(square: .g4), ChessBoardSpotModel(square: .h4)]
+            let row3 = [ChessBoardSpotModel(square: .a3), ChessBoardSpotModel(square: .b3), ChessBoardSpotModel(square: .c3), ChessBoardSpotModel(square: .d3), ChessBoardSpotModel(square: .e3), ChessBoardSpotModel(square: .f3), ChessBoardSpotModel(square: .g3), ChessBoardSpotModel(square: .h3)]
+            let row2 = [ChessBoardSpotModel(square: .a2), ChessBoardSpotModel(square: .b2), ChessBoardSpotModel(square: .c2), ChessBoardSpotModel(square: .d2), ChessBoardSpotModel(square: .e2), ChessBoardSpotModel(square: .f2), ChessBoardSpotModel(square: .g2), ChessBoardSpotModel(square: .h2)]
+            let row1 = [ChessBoardSpotModel(square: .a1), ChessBoardSpotModel(square: .b1), ChessBoardSpotModel(square: .c1), ChessBoardSpotModel(square: .d1), ChessBoardSpotModel(square: .e1), ChessBoardSpotModel(square: .f1), ChessBoardSpotModel(square: .g1), ChessBoardSpotModel(square: .h1)]
+            snapshot.appendSections([7, 6, 5, 4, 3, 2, 1, 0])
+            snapshot.appendItems(row8, toSection: 7)
+            snapshot.appendItems(row7, toSection: 6)
+            snapshot.appendItems(row6, toSection: 5)
+            snapshot.appendItems(row5, toSection: 4)
+            snapshot.appendItems(row4, toSection: 3)
+            snapshot.appendItems(row3, toSection: 2)
+            snapshot.appendItems(row2, toSection: 1)
+            snapshot.appendItems(row1, toSection: 0)
+            return snapshot
+        } else {
+            var snapshot = NSDiffableDataSourceSnapshot<Int, ChessBoardSpotModel>()
+            let row8 = [ChessBoardSpotModel(square: .a8), ChessBoardSpotModel(square: .b8), ChessBoardSpotModel(square: .c8), ChessBoardSpotModel(square: .d8), ChessBoardSpotModel(square: .e8), ChessBoardSpotModel(square: .f8), ChessBoardSpotModel(square: .g8), ChessBoardSpotModel(square: .h8)]
+            let row7 = [ChessBoardSpotModel(square: .a7), ChessBoardSpotModel(square: .b7), ChessBoardSpotModel(square: .c7), ChessBoardSpotModel(square: .d7), ChessBoardSpotModel(square: .e7), ChessBoardSpotModel(square: .f7), ChessBoardSpotModel(square: .g7), ChessBoardSpotModel(square: .h7)]
+            let row6 = [ChessBoardSpotModel(square: .a6), ChessBoardSpotModel(square: .b6), ChessBoardSpotModel(square: .c6), ChessBoardSpotModel(square: .d6), ChessBoardSpotModel(square: .e6), ChessBoardSpotModel(square: .f6), ChessBoardSpotModel(square: .g6), ChessBoardSpotModel(square: .h6)]
+            let row5 = [ChessBoardSpotModel(square: .a5), ChessBoardSpotModel(square: .b5), ChessBoardSpotModel(square: .c5), ChessBoardSpotModel(square: .d5), ChessBoardSpotModel(square: .e5), ChessBoardSpotModel(square: .f5), ChessBoardSpotModel(square: .g5), ChessBoardSpotModel(square: .h5)]
+            let row4 = [ChessBoardSpotModel(square: .a4), ChessBoardSpotModel(square: .b4), ChessBoardSpotModel(square: .c4), ChessBoardSpotModel(square: .d4), ChessBoardSpotModel(square: .e4), ChessBoardSpotModel(square: .f4), ChessBoardSpotModel(square: .g4), ChessBoardSpotModel(square: .h4)]
+            let row3 = [ChessBoardSpotModel(square: .a3), ChessBoardSpotModel(square: .b3), ChessBoardSpotModel(square: .c3), ChessBoardSpotModel(square: .d3), ChessBoardSpotModel(square: .e3), ChessBoardSpotModel(square: .f3), ChessBoardSpotModel(square: .g3), ChessBoardSpotModel(square: .h3)]
+            let row2 = [ChessBoardSpotModel(square: .a2), ChessBoardSpotModel(square: .b2), ChessBoardSpotModel(square: .c2), ChessBoardSpotModel(square: .d2), ChessBoardSpotModel(square: .e2), ChessBoardSpotModel(square: .f2), ChessBoardSpotModel(square: .g2), ChessBoardSpotModel(square: .h2)]
+            let row1 = [ChessBoardSpotModel(square: .a1), ChessBoardSpotModel(square: .b1), ChessBoardSpotModel(square: .c1), ChessBoardSpotModel(square: .d1), ChessBoardSpotModel(square: .e1), ChessBoardSpotModel(square: .f1), ChessBoardSpotModel(square: .g1), ChessBoardSpotModel(square: .h1)]
+            snapshot.appendSections([0, 1, 2, 3, 4, 5, 6, 7])
+            snapshot.appendItems(row8, toSection: 7)
+            snapshot.appendItems(row7, toSection: 6)
+            snapshot.appendItems(row6, toSection: 5)
+            snapshot.appendItems(row5, toSection: 4)
+            snapshot.appendItems(row4, toSection: 3)
+            snapshot.appendItems(row3, toSection: 2)
+            snapshot.appendItems(row2, toSection: 1)
+            snapshot.appendItems(row1, toSection: 0)
+            return snapshot
+        }
     }
 }

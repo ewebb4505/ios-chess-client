@@ -36,7 +36,9 @@ class LoadingGameViewController: UIViewController {
             
             if player != nil && gameConnection != nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: DispatchWorkItem(block: { [weak self] in
-                    self?.navigationController?.pushViewController(ChessGameViewController(gameConnection: self?.gameConnection, isLiveGame: true), animated: true)
+                    self?.navigationController?.pushViewController(ChessGameViewController(thisPlayer: self?.player ?? Player(id: ""),
+                                                                                           gameConnection: self?.gameConnection, 
+                                                                                           isLiveGame: true), animated: true)
                 }))
             }
         }
